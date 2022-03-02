@@ -24,6 +24,9 @@ final class AppCoordinator: BaseCoordinator {
     }
     
     func start() {
+        let firstViewController : FirstViewController = FirstViewController()
+        //firstViewController.delegate = self
+        self.navigationController.viewControllers = [firstViewController]
         loading()
     }
     

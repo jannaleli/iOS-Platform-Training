@@ -15,10 +15,15 @@ public protocol FirstViewControllerDelegate: AnyObject {
 
 class FirstViewController: UIViewController {
     weak var delegate: FirstViewControllerDelegate?
+    var firstView = FirstView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    override func loadView() {
+         view = firstView
     }
 }
 
