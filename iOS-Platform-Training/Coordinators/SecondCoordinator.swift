@@ -9,4 +9,26 @@ import Foundation
 import UIKit
 
 
+protocol BackToFirstViewControllerDelegate: AnyObject {
+    func navigateBackToFirstPage(newOrderCoordinate: Any)
+}
 
+final class SecondCoordinator: BaseCoordinator {
+    var navigationController: UINavigationController
+    var childCoordinators = [BaseCoordinator]()
+    
+    init() {
+        self.navigationController = UINavigationController()
+    
+    }
+    
+    func start() {
+        
+    }
+    
+    
+    
+    
+    
+    
+}
