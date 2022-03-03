@@ -8,8 +8,13 @@
 import Foundation
 import UIKit
 
+protocol FirstViewDelegate: AnyObject {
+    func didTapButtonToSecondPage(in view: FirstView)
+    func didTapButtonToThirdPage(in view: FirstView)
+}
+
 class FirstView: UIView {
-    
+    weak var delegate: FirstViewDelegate?
     var buttonToSecondPage: UIButton?
     var buttonToThirdPage: UIButton?
     override init(frame: CGRect) {
@@ -34,13 +39,19 @@ class FirstView: UIView {
         buttonToSecondPage = UIButton()
         buttonToSecondPage?.setTitle("Go to First Page", for: .normal)
         buttonToSecondPage?.backgroundColor = .black
+        buttonToSecondPage?.isUserInteractionEnabled = true
+        let secondButtonTap = UITapGestureRecognizer(target: self, action: #selector(handleButtonToSecondPageTapped(sender:)))
+        buttonToSecondPage?.addGestureRecognizer(secondButtonTap)
         addSubview(buttonToSecondPage!)
         
         buttonToThirdPage = UIButton()
         buttonToThirdPage?.backgroundColor = .black
         buttonToThirdPage?.setTitle("Go to Third Page", for: .normal)
-        addSubview(buttonToThirdPage!)
         
+        let thirdButtonTap = UITapGestureRecognizer(target: self, action: #selector(handleButtonToThirdPageTapped(sender:)))
+        buttonToThirdPage?.addGestureRecognizer(thirdButtonTap)
+        addSubview(buttonToThirdPage!)
+    
         
         
     }
@@ -65,6 +76,14 @@ class FirstView: UIView {
                 ])
         }
       
+    }
+    
+    @objc func handleButtonToSecondPageTapped(sender: UITapGestureRecognizer) {
+        delegate?.didTapButtonToSecondPage(in: self)
+    }
+    
+    @objc func handleButtonToThirdPageTapped(sender: UITapGestureRecognizer) {
+        delegate?.didTapButtonToThirdPage(in: self)
     }
 }
 
