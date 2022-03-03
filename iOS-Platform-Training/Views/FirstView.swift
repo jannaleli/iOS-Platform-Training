@@ -14,19 +14,19 @@ class FirstView: UIView {
     var buttonToThirdPage: UIButton?
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setConfigurations()
+        setGeneralConfigurations()
         createSubviews()
         setUpConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setConfigurations()
+        setGeneralConfigurations()
         createSubviews()
         setUpConstraints()
     }
     
-    func setConfigurations() {
+    func setGeneralConfigurations() {
         backgroundColor = .white
     }
     
@@ -46,21 +46,25 @@ class FirstView: UIView {
     }
     
     func setUpConstraints() {
-        buttonToSecondPage!.translatesAutoresizingMaskIntoConstraints = false
-        buttonToThirdPage!.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            buttonToSecondPage!.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
-            buttonToSecondPage!.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            buttonToSecondPage!.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
-            buttonToSecondPage!.widthAnchor.constraint(equalTo: buttonToThirdPage!.heightAnchor),
+        if let buttonToSecondPage = buttonToSecondPage, let buttonToThirdPage = buttonToThirdPage{
+            buttonToSecondPage.translatesAutoresizingMaskIntoConstraints = false
+            buttonToThirdPage.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                buttonToSecondPage.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
+                buttonToSecondPage.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+                buttonToSecondPage.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
+                buttonToSecondPage.widthAnchor.constraint(equalTo: buttonToThirdPage.heightAnchor),
 
-            buttonToThirdPage!.leadingAnchor.constraint(equalToSystemSpacingAfter: buttonToSecondPage!.trailingAnchor, multiplier: 1.0),
-            buttonToThirdPage!.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-            buttonToThirdPage!.bottomAnchor.constraint(equalTo: buttonToSecondPage!.centerYAnchor),
+                buttonToThirdPage.leadingAnchor.constraint(equalToSystemSpacingAfter: buttonToSecondPage.trailingAnchor, multiplier: 1.0),
+                buttonToThirdPage.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+                buttonToThirdPage.bottomAnchor.constraint(equalTo: buttonToSecondPage.centerYAnchor),
 
+          
+                ])
+        }
       
-            ])
     }
 }
 
