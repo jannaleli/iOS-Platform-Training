@@ -32,6 +32,7 @@
 		1047AF3C27CFFAD60012E072 /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1047AF3B27CFFAD60012E072 /* FirstView.swift */; };
 		1047AF3E27CFFAE50012E072 /* SecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1047AF3D27CFFAE50012E072 /* SecondView.swift */; };
 		1047AF4027CFFAF10012E072 /* ThirdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1047AF3F27CFFAF10012E072 /* ThirdView.swift */; };
+		1054A02527D17006002C9FBE /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1054A02427D17006002C9FBE /* Button.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		1047AF3B27CFFAD60012E072 /* FirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstView.swift; sourceTree = "<group>"; };
 		1047AF3D27CFFAE50012E072 /* SecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondView.swift; sourceTree = "<group>"; };
 		1047AF3F27CFFAF10012E072 /* ThirdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdView.swift; sourceTree = "<group>"; };
+		1054A02427D17006002C9FBE /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 		1047AEEA27CF06550012E072 /* iOS-Platform-Training */ = {
 			isa = PBXGroup;
 			children = (
+				1054A02327D16FF8002C9FBE /* Components */,
 				1047AF3A27CFFAC20012E072 /* Views */,
 				1047AF3327CFF9820012E072 /* Xibs */,
 				1047AF1E27CFB5D10012E072 /* Coordinators */,
@@ -221,6 +224,14 @@
 				1047AF3F27CFFAF10012E072 /* ThirdView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		1054A02327D16FF8002C9FBE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1054A02427D17006002C9FBE /* Button.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -373,6 +384,7 @@
 				1047AEEE27CF06550012E072 /* SceneDelegate.swift in Sources */,
 				1047AF3027CFB6660012E072 /* ThirdViewController.swift in Sources */,
 				1047AF2627CFB60B0012E072 /* ThirdCoordinator.swift in Sources */,
+				1054A02527D17006002C9FBE /* Button.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,3 +6,18 @@
 //
 
 import Foundation
+import UIKit
+
+public protocol ThirdViewControllerDelegate: AnyObject {
+    func navigateToFirstPage()
+    func navigateToThirdPage()
+}
+
+
+class ThirdViewController: UIViewController {
+    weak var delegate: ThirdViewControllerDelegate?
+    var thirdView = ThirdView()
+    override func loadView() {
+         view = thirdView
+    }
+}

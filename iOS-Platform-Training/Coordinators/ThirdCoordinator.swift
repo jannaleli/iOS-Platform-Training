@@ -9,3 +9,27 @@ import Foundation
 import UIKit
 
 
+final class ThirdCoordinator: BaseCoordinator {
+
+    
+    var navigationController: UINavigationController
+    var childCoordinators = [BaseCoordinator]()
+    
+    init() {
+        self.navigationController = UINavigationController()
+    
+    }
+    
+    func start() {
+       
+        let thirdViewController : ThirdViewController = ThirdViewController()
+        //firstViewController.delegate = self
+        self.navigationController.viewControllers = [thirdViewController]
+    }
+    
+    
+    
+    
+    
+    
+}

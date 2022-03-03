@@ -6,3 +6,18 @@
 //
 
 import Foundation
+import UIKit
+
+public protocol SecondViewControllerDelegate: AnyObject {
+    func navigateToFirstPage()
+    func navigateToThirdPage()
+}
+
+
+class SecondViewController: UIViewController {
+    weak var delegate: SecondViewControllerDelegate?
+    var secondView = SecondView()
+    override func loadView() {
+         view = secondView
+    }
+}

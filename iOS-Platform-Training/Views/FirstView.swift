@@ -39,6 +39,7 @@ class FirstView: UIView {
         buttonToSecondPage = UIButton()
         buttonToSecondPage?.setTitle("Go to First Page", for: .normal)
         buttonToSecondPage?.backgroundColor = .black
+        buttonToSecondPage?.frame.size = CGSize(width: 100, height: 100)
         buttonToSecondPage?.isUserInteractionEnabled = true
         let secondButtonTap = UITapGestureRecognizer(target: self, action: #selector(handleButtonToSecondPageTapped(sender:)))
         buttonToSecondPage?.addGestureRecognizer(secondButtonTap)
@@ -46,6 +47,7 @@ class FirstView: UIView {
         
         buttonToThirdPage = UIButton()
         buttonToThirdPage?.backgroundColor = .black
+        buttonToThirdPage?.frame.size = CGSize(width: 100, height: 100)
         buttonToThirdPage?.setTitle("Go to Third Page", for: .normal)
         
         let thirdButtonTap = UITapGestureRecognizer(target: self, action: #selector(handleButtonToThirdPageTapped(sender:)))
@@ -62,29 +64,43 @@ class FirstView: UIView {
             buttonToSecondPage.translatesAutoresizingMaskIntoConstraints = false
             buttonToThirdPage.translatesAutoresizingMaskIntoConstraints = false
             
-            NSLayoutConstraint.activate([
-                buttonToSecondPage.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
-                buttonToSecondPage.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-                buttonToSecondPage.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
-                buttonToSecondPage.widthAnchor.constraint(equalTo: buttonToThirdPage.heightAnchor),
+            buttonToSecondPage.anchor(top: layoutMarginsGuide.topAnchor,
+                                      paddingTop: 10,
+                                      bottom: layoutMarginsGuide.bottomAnchor,
+                                      paddingBottom: 10,
+                                      left: layoutMarginsGuide.leadingAnchor,
+                                      paddingLeft: 10,
+                                      right: buttonToThirdPage.leadingAnchor,
+                                      paddingRight: 10,
+                                      width: 0,
+                                      height: 0)
+            
+            buttonToThirdPage.anchor(top: layoutMarginsGuide.topAnchor,
+                                      paddingTop: 10,
+                                      bottom: layoutMarginsGuide.bottomAnchor,
+                                      paddingBottom: 10,
+                                      left: buttonToSecondPage.trailingAnchor,
+                                      paddingLeft: 10,
+                                      right: layoutMarginsGuide.trailingAnchor,
+                                      paddingRight: 10,
+                                      width: 0,
+                                      height: 0)
 
-                buttonToThirdPage.leadingAnchor.constraint(equalToSystemSpacingAfter: buttonToSecondPage.trailingAnchor, multiplier: 1.0),
-                buttonToThirdPage.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-                buttonToThirdPage.bottomAnchor.constraint(equalTo: buttonToSecondPage.centerYAnchor),
-
-          
-                ])
         }
       
     }
     
     @objc func handleButtonToSecondPageTapped(sender: UITapGestureRecognizer) {
+        print("First Button Tapped")
         delegate?.didTapButtonToSecondPage(in: self)
     }
     
     @objc func handleButtonToThirdPageTapped(sender: UITapGestureRecognizer) {
+        print("Second Button Tapped")
         delegate?.didTapButtonToThirdPage(in: self)
     }
 }
+
+
 
 

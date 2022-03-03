@@ -19,11 +19,15 @@ final class SecondCoordinator: BaseCoordinator {
     
     init() {
         self.navigationController = UINavigationController()
+
     
     }
     
     func start() {
-        
+  
+        let secondViewController : SecondViewController = SecondViewController()
+        //firstViewController.delegate = self
+        self.navigationController.viewControllers = [secondViewController]
     }
     
     
