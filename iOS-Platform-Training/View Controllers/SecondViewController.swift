@@ -20,4 +20,13 @@ class SecondViewController: UIViewController {
     override func loadView() {
          view = secondView
     }
+    
+    @IBAction func navigateToFirstPage(_ sender: Any) {
+        self.delegate?.navigateToFirstPage()
+     
+    }
+     
+     @IBAction func navigateToThirdPage(_ sender: Any) {
+         self.delegate?.navigateToThirdPage()
+     }
 }

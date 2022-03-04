@@ -14,6 +14,8 @@ final class ThirdCoordinator: BaseCoordinator {
     
     var navigationController: UINavigationController
     var childCoordinators = [BaseCoordinator]()
+    weak var firstDelegate: FirstViewDelegate?
+    weak var secondDelegate: SecondViewDelegate?
     
     init() {
         self.navigationController = UINavigationController()

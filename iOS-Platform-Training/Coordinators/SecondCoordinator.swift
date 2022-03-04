@@ -16,6 +16,8 @@ protocol BackToFirstViewControllerDelegate: AnyObject {
 final class SecondCoordinator: BaseCoordinator {
     var navigationController: UINavigationController
     var childCoordinators = [BaseCoordinator]()
+    weak var firstDelegate: FirstViewDelegate?
+    weak var thirdDelegate: ThirdViewDelegate?
     
     init() {
         self.navigationController = UINavigationController()
@@ -36,3 +38,5 @@ final class SecondCoordinator: BaseCoordinator {
     
     
 }
+
+

@@ -10,7 +10,7 @@ import UIKit
 
 public protocol ThirdViewControllerDelegate: AnyObject {
     func navigateToFirstPage()
-    func navigateToThirdPage()
+    func navigateToSecondPage()
 }
 
 
@@ -20,4 +20,13 @@ class ThirdViewController: UIViewController {
     override func loadView() {
          view = thirdView
     }
+    
+    @IBAction func navigateToSecondPage(_ sender: Any) {
+        self.delegate?.navigateToSecondPage()
+     
+    }
+     
+     @IBAction func navigateToFirstPage(_ sender: Any) {
+         self.delegate?.navigateToFirstPage()
+     }
 }

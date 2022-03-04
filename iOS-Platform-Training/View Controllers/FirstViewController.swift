@@ -9,12 +9,16 @@ import Foundation
 import UIKit
 
 public protocol FirstViewControllerDelegate: AnyObject {
-    func navigateToSecondPage()
-    func navigateToThirdPage()
+
+    func goToSecondPage()
+    func goToThirdPage()
+    
 }
 
 class FirstViewController: UIViewController {
-    weak var delegate: FirstViewControllerDelegate?
+
+    
+    weak var delegate: AppCoordinatorDelegate?
     var firstView = FirstView()
     
     override func viewDidLoad() {
@@ -23,8 +27,24 @@ class FirstViewController: UIViewController {
     }
     
     override func loadView() {
-         view = firstView
+        firstView.delegate = self
+        view = firstView
     }
+    
+
+}
+
+extension FirstViewController: FirstViewControllerDelegate {
+    func goToSecondPage() {
+        print("You're on the next page!")
+        delegate?.goToSecondPage()
+     
+    }
+     
+    func goToThirdPage() {
+        print("You're on the third page!")
+        delegate?.goToThirdPage()
+     }
 }
 
 

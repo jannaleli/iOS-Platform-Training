@@ -8,7 +8,13 @@
 import Foundation
 import UIKit
 
+protocol SecondViewDelegate: AnyObject{
+    func didTapButtonToFirstPage(in view: SecondView)
+    func didTapButtonToThirdPage(in vew: SecondView)
+}
+
 class SecondView: UIView {
+    weak var delegate: SecondViewDelegate?
     var buttonToFirstPage: UIButton?
     var buttonToThirdPage: UIButton?
     override init(frame: CGRect) {
@@ -33,11 +39,17 @@ class SecondView: UIView {
         buttonToFirstPage = UIButton()
         buttonToFirstPage?.setTitle("Go to First Page", for: .normal)
         buttonToFirstPage?.backgroundColor = .black
+        buttonToFirstPage?.isUserInteractionEnabled = true
+        let firstButtonTap = UITapGestureRecognizer(target: self, action: #selector(handleButtonToFirstPageTapped(sender:)))
+        buttonToFirstPage?.addGestureRecognizer(firstButtonTap)
         addSubview(buttonToFirstPage!)
         
         buttonToThirdPage = UIButton()
         buttonToThirdPage?.backgroundColor = .black
         buttonToThirdPage?.setTitle("Go to Third Page", for: .normal)
+        buttonToThirdPage?.isUserInteractionEnabled = true
+        let thirdButtonTap = UITapGestureRecognizer(target: self, action: #selector(handleButtonToThirdPageTapped(sender:)))
+        buttonToThirdPage?.addGestureRecognizer(thirdButtonTap)
         addSubview(buttonToThirdPage!)
         
         
@@ -47,22 +59,38 @@ class SecondView: UIView {
     func setUpConstraints() {
         
         if let buttonToFirstPage = buttonToFirstPage, let buttonToThirdPage = buttonToThirdPage{
-            buttonToFirstPage.translatesAutoresizingMaskIntoConstraints = false
-            buttonToThirdPage.translatesAutoresizingMaskIntoConstraints = false
             
-            NSLayoutConstraint.activate([
-                buttonToFirstPage.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
-                buttonToFirstPage.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-                buttonToFirstPage.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
-                buttonToFirstPage.widthAnchor.constraint(equalTo: buttonToThirdPage.heightAnchor),
-
-                buttonToThirdPage.leadingAnchor.constraint(equalToSystemSpacingAfter: buttonToFirstPage.trailingAnchor, multiplier: 1.0),
-                buttonToThirdPage.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-                buttonToThirdPage.bottomAnchor.constraint(equalTo: buttonToFirstPage.centerYAnchor),
-
-          
-                ])
+            buttonToFirstPage.anchor(top: layoutMarginsGuide.topAnchor,
+                                      paddingTop: 10,
+                                      bottom: layoutMarginsGuide.bottomAnchor,
+                                      paddingBottom: 10,
+                                      left: layoutMarginsGuide.leadingAnchor,
+                                      paddingLeft: 10,
+                                      right: buttonToThirdPage.leadingAnchor,
+                                      paddingRight: 10,
+                                      width: 0,
+                                      height: 0)
+            
+            buttonToThirdPage.anchor(top: layoutMarginsGuide.topAnchor,
+                                      paddingTop: 10,
+                                      bottom: layoutMarginsGuide.bottomAnchor,
+                                      paddingBottom: 10,
+                                      left: buttonToFirstPage.trailingAnchor,
+                                      paddingLeft: 10,
+                                      right: layoutMarginsGuide.trailingAnchor,
+                                      paddingRight: 10,
+                                      width: 0,
+                                      height: 0)
         }
       
+    }
+    @objc func handleButtonToFirstPageTapped(sender: UITapGestureRecognizer) {
+        
+        delegate?.didTapButtonToFirstPage(in: self)
+    }
+    
+    @objc func handleButtonToThirdPageTapped(sender: UITapGestureRecognizer) {
+        
+        delegate?.didTapButtonToThirdPage(in: self)
     }
 }

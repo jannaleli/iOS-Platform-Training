@@ -8,6 +8,12 @@
 import Foundation
 import UIKit
 
+protocol AppCoordinatorDelegate: AnyObject {
+    func goToSecondPage()
+    func goToThirdPage()
+}
+
+
 final class AppCoordinator: BaseCoordinator {
     var navigationController: UINavigationController
     
@@ -25,7 +31,7 @@ final class AppCoordinator: BaseCoordinator {
     
     func start() {
         let firstViewController : FirstViewController = FirstViewController()
-        //firstViewController.delegate = self
+        firstViewController.delegate = self
         self.navigationController.viewControllers = [firstViewController]
         loading()
     }
@@ -38,3 +44,15 @@ final class AppCoordinator: BaseCoordinator {
 
     
 }
+
+extension AppCoordinator: AppCoordinatorDelegate {
+    func goToSecondPage() {
+        print("you reached the final step app coordinator")
+    }
+    func goToThirdPage() {
+        print("you reached the final step of app coordinator go to third page")
+        
+    }
+}
+
+
